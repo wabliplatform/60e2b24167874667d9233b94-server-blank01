@@ -19,8 +19,117 @@ security:
 - {}
 tags:
 - description: not yet ready
+  name: myprojects
+- description: not yet ready
   name: project
 paths:
+  /myprojects:
+    post:
+      operationId: createmyprojects
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/myprojects'
+        description: data to be created
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myprojects'
+          description: successful operation
+      summary: Creates the data
+      tags:
+      - myprojects
+      x-eov-operation-handler: controllers/MyprojectsController
+  /myprojects/{myprojectsId}:
+    delete:
+      operationId: deletemyprojects
+      parameters:
+      - description: the Id parameter
+        explode: false
+        in: path
+        name: myprojectsId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: successful operation
+      summary: Delete the element
+      tags:
+      - myprojects
+      x-eov-operation-handler: controllers/MyprojectsController
+    get:
+      operationId: getmyprojects
+      parameters:
+      - description: the Id parameter
+        explode: false
+        in: path
+        name: myprojectsId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myprojects'
+          description: successful operation
+      summary: Get the element
+      tags:
+      - myprojects
+      x-eov-operation-handler: controllers/MyprojectsController
+    put:
+      operationId: updatemyprojects
+      parameters:
+      - description: the Id parameter
+        explode: false
+        in: path
+        name: myprojectsId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/myprojects'
+        description: data to be updated
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myprojects'
+          description: successful operation
+      summary: Updates the element
+      tags:
+      - myprojects
+      x-eov-operation-handler: controllers/MyprojectsController
+  /myprojects/getAll:
+    get:
+      operationId: getAllmyprojects
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/myprojects'
+                type: array
+          description: successful operation
+      summary: Get all the data
+      tags:
+      - myprojects
+      x-method-getAll: "true"
+      x-eov-operation-handler: controllers/MyprojectsController
   /project:
     post:
       operationId: createproject
@@ -130,7 +239,7 @@ paths:
       x-eov-operation-handler: controllers/ProjectController
 components:
   schemas:
-    project:
+    myprojects:
       example:
         ptitle: ptitle
         _id: _id
@@ -141,4 +250,11 @@ components:
           type: string
       required:
       - ptitle
+      type: object
+    project:
+      example:
+        _id: _id
+      properties:
+        _id:
+          type: string
       type: object
