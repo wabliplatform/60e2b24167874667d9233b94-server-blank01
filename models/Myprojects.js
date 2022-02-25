@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const myprojectsSchema = new Schema({
-Underscoreid:String , 
-ptitle:String 
+Underscoreid:String 
 
 })
 
