@@ -253,8 +253,13 @@ components:
       type: object
     project:
       example:
+        pptitle: pptitle
         _id: _id
       properties:
         _id:
           type: string
+        pptitle:
+          type: string
+      required:
+      - pptitle
       type: object
